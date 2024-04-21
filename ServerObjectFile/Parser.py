@@ -11,7 +11,8 @@ class Parser():
     "add": AddSrvStru,
     "show": PrintAllSrvStru,
     "del": DelSrvStru,
-    "modify": ModifySrvStru
+    "modify": ModifySrvStru,
+    "query": QuerySrvStru
 }
     def parser(self, message):
         keep_going = True

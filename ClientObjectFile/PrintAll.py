@@ -15,9 +15,8 @@ class PrintAll():
             print ("\n==== student list ====\n")
             for name in stu_dict.keys():
                 print(f"Name: {stu_dict[name]['name']}")
-                for subject, score in stu_dict[name]['score'].items():
-                    print(f"  subject: {subject}, score: {score}")    
-            print ("======================")
+                for subject, score in stu_dict[name]['scores'].items():
+                    print(f"  subject: {subject}, score: {score}")            
         else:
             print('Get students list failed!')
         return

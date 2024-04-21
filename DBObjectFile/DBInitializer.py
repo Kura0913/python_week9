@@ -1,4 +1,4 @@
-from DBConnection import DBConnection
+from DBObjectFile.DBConnection import DBConnection
 
 
 necessary_table_to_create = {

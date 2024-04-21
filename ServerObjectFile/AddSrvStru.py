@@ -1,23 +1,24 @@
-from StudentInfoProcessor import StudentInfoProcessor
+from DBObjectFile.DBConnection import DBConnection
+from DBObjectFile.DBInitializer import DBInitializer
+from DBObjectFile.StudentInfoTable import StudentInfoTable
+from DBObjectFile.SubjectInfoTable import SubjectInfoTable
 
 class AddSrvStru():
     def __init__(self):
         pass
 
     def execute(self, parameters):
-        stu_dict = StudentInfoProcessor().read_student_file()
+        DBConnection.db_file_path = "students_score_DB.db"
+        DBInitializer().execute()
+
+        stu_dict = {}
         reply_msg = {'status':''}
 
-        if parameters['name'] not in stu_dict.keys():
-            stu_dict[parameters['name']] = parameters # if the name not in the stu_dict, add it
-            # set "OK" status message if add success
-            reply_msg['status'] = 'OK'
-        else:
-            # set "Fail" status message if add failed
-            reply_msg['status'] = 'Fail'
-            reply_msg['reason'] = 'The name already exists.'
+        StudentInfoTable().insert_a_student(parameters['name'])
+        stu_id = StudentInfoTable().select_a_student(parameters['name'])
+        for subject, score in parameters['scores'].items():
+            SubjectInfoTable().insert_a_subject(stu_id, subject, score)
 
-        # restore stu_dict to DB
-        StudentInfoProcessor().restore_student_file(stu_dict)
+        reply_msg['status'] = "OK"
         
         return reply_msg

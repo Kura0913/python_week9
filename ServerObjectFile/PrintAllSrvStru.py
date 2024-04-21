@@ -1,13 +1,22 @@
-from StudentInfoProcessor import StudentInfoProcessor
+from DBObjectFile.DBConnection import DBConnection
+from DBObjectFile.DBInitializer import DBInitializer
+from DBObjectFile.StudentInfoTable import StudentInfoTable
+from DBObjectFile.SubjectInfoTable import SubjectInfoTable
 
 class PrintAllSrvStru():
     def __init__(self):
         pass
 
-    def execute(parameters):
-        stu_dict = StudentInfoProcessor().read_student_file()
-        reply_msg = {'status':''}
+    def execute(self, parameters):
+        DBConnection.db_file_path = "students_score_DB.db"
+        DBInitializer().execute()
 
+        stu_dict = {}
+        reply_msg = {'status':''}
+        stu_name_dict = StudentInfoTable().select_all_student()
+        for stu_id, name in stu_name_dict.items():
+            scores_dict = SubjectInfoTable().select_subjects(stu_id)
+            stu_dict[name] = {'name':name, 'scores':scores_dict}
         if stu_dict != None:
             reply_msg['status'] = 'OK'
             reply_msg['parameters'] = stu_dict

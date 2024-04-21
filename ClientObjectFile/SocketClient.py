@@ -22,4 +22,4 @@ class SocketClient:
         return json.loads(raw_data)
     # send name query command to server
     def name_query(self, name):
-        return self.send_command('query', {'parameters':name})
+        return self.send_command('query', {'name':name})

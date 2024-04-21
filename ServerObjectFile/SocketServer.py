@@ -40,7 +40,7 @@ class SocketServer(Thread):
                 print(f"Exeption happened {e}, {address}")
                 keep_going = False
             else:
-                keep_going, reply_msg = Parser.parser(message)
+                keep_going, reply_msg = Parser().parser(message)
 
                 connection.send(json.dumps(reply_msg).encode())
         

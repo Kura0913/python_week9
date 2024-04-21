@@ -12,10 +12,9 @@ class AddStru():
         if name != 'exit':
             client.name_query(name)
             query_result = client.wait_response()
-            print(f"The client received data => {query_result}")
-            if query_result['status'] == 'fail':# check if the student is on the list, if not, execute add func.
+            if query_result['status'] == 'Fail':# check if the student is on the list, if not, execute add func.
                 stu_dict['name'] = name
-                stu_dict['score'] = dict()
+                stu_dict['scores'] = dict()
                 score = -1
                 while True:
                     subject, score = input_subject(name)
@@ -26,7 +25,7 @@ class AddStru():
                             continue        
                         else:
                             # add to dict
-                            stu_dict['score'][subject] = score
+                            stu_dict['scores'][subject] = score
             else:# The student is already in the list
                 print(f"The student is already in the list.")
                 return stu_dict

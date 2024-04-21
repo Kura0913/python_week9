@@ -1,12 +1,10 @@
-from threading import Thread
 from ServerObjectFile.SocketServer import SocketServer
-import socket
-import json
+
 
 host = "127.0.0.1"
 port = 20001
 
-if __name__ == '__main__':
+def main():
     server = SocketServer(host, port)
     server.daemon = True
     server.serve()
@@ -21,3 +19,6 @@ if __name__ == '__main__':
     
     server.server_socket.close()
     print("leaving ....... ")
+
+if __name__ == '__main__':
+    main()

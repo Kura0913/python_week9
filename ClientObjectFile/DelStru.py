@@ -11,11 +11,10 @@ class DelStru():
         if name != 'exit':
             client.name_query(name)
             query_result = client.wait_response()
-            print(f"The client received data => {query_result}")
             if query_result['status'] == 'OK':# check if the student is on the list, if yes, execute modify func.
-                sure_to_del = True if input("Confirm to delete (y/n):") == 'y' else False
-                if sure_to_del:
+                if input("Confirm to delete (y/n):") == 'y':
                     stu_dict['name'] = name
+                    return stu_dict
             else:# The student is not in the list
                 print(f"The name {name} is not found.")
                 return stu_dict

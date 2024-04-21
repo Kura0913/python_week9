@@ -13,10 +13,10 @@ class ModifyStru():
             query_result = client.wait_response()
             if query_result['status'] == 'OK':# check if the student is on the list, if yes, execute modify func.
                 print('Current subjects are:')
-                for subject, _ in query_result['score'].items():# print the student's subject in list
+                for subject, _ in query_result['scores'].items():# print the student's subject in list
                     print(subject)
                 stu_dict['name'] = name
-                stu_dict['score'] = dict()
+                stu_dict['scores'] = dict()
                 score = -1
                 while True:
                     subject, score = input_subject(name)
@@ -27,7 +27,7 @@ class ModifyStru():
                             continue
                         else:
                             # add to dict
-                            stu_dict['score'][subject] = score
+                            stu_dict['scores'][subject] = score
             else:# The student is not in the list
                 print(f"The name {name} is not found.")
                 return stu_dict
