@@ -1,5 +1,3 @@
-from DBObjectFile.DBConnection import DBConnection
-from DBObjectFile.DBInitializer import DBInitializer
 from DBObjectFile.StudentInfoTable import StudentInfoTable
 from DBObjectFile.SubjectInfoTable import SubjectInfoTable
 
@@ -8,9 +6,6 @@ class ModifySrvStru():
         pass
 
     def execute(self, parameters):
-        DBConnection.db_file_path = "students_score_DB.db"
-        DBInitializer().execute()
-
         reply_msg = {'status': ''}
 
         stu_id = StudentInfoTable().select_a_student(parameters['name'])

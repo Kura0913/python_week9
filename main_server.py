@@ -1,10 +1,13 @@
 from ServerObjectFile.SocketServer import SocketServer
-
+from DBObjectFile.DBConnection import DBConnection
+from DBObjectFile.DBInitializer import DBInitializer
 
 host = "127.0.0.1"
 port = 20001
 
 def main():
+    DBConnection.db_file_path = "students_score_DB.db"
+    DBInitializer().execute()
     server = SocketServer(host, port)
     server.daemon = True
     server.serve()

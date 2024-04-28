@@ -5,7 +5,7 @@ import json
 
 
 class SocketServer(Thread):
-    def __init__(self, host, port):
+    def __init__(self, host = "127.0.0.1", port = 20001):
         super().__init__()
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # The following setting is to avoid the server crash. So, the binded address can be reused

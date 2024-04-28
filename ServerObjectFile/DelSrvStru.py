@@ -1,5 +1,3 @@
-from DBObjectFile.DBConnection import DBConnection
-from DBObjectFile.DBInitializer import DBInitializer
 from DBObjectFile.StudentInfoTable import StudentInfoTable
 from DBObjectFile.SubjectInfoTable import SubjectInfoTable
 
@@ -9,9 +7,6 @@ class DelSrvStru():
 
     def execute(self, parameters):
         reply_msg = {'status': ''}
-
-        DBConnection.db_file_path = "students_score_DB.db"
-        DBInitializer().execute()
         
         stu_id = StudentInfoTable().select_a_student(parameters['name'])
 
